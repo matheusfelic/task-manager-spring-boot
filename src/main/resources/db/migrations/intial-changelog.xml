@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <!-- Add your changesets here -->
+    <changeSet id="1" author="matheus-feliciano">
+        <createTable tableName="task">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="isDone" type="boolean" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="rename-column-isDone" author="matheus-feliciano">
+        <renameColumn tableName="task" oldColumnName="isDone" newColumnName="is_done" columnDataType="BOOLEAN"/>
+    </changeSet>
+
+</databaseChangeLog>

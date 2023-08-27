@@ -1,54 +1,49 @@
 package com.example.taskmanager.services;
 
 import com.example.taskmanager.entities.Task;
+import com.example.taskmanager.repositories.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    private static final Map<Integer, Task> taskList = new HashMap<>();
+    @Autowired
+    private TaskRepository repository;
 
     @Override
-    public void createTask(Task task) {
-        taskList.put(task.getId(), task);
-    }
-
-    @Override
-    public void updateTask(Task task) {
-        taskList.remove(task.getId());
-        taskList.put(task.getId(), task);
+    public void saveTask(Task task) {
+        repository.save(task);
     }
 
     @Override
     public Task getTask(Integer id) {
-        return taskList.get(id);
+        return repository.getReferenceById(id);
     }
 
     @Override
     public Collection<Task> getAllTasks() {
-        return taskList.values();
+        return repository.findAll();
     }
 
     @Override
     public Collection<Task> getAllTasks(boolean isDone) {
-        return taskList.values().stream().filter(t -> t.isDone() == isDone).toList();
+        return repository.findAllByIsDoneEquals(isDone);
     }
 
     @Override
     public void deleteTask(Integer id) {
-        taskList.remove(id);
+        repository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public void doTask(Integer id, boolean isDone) {
-        Task task = taskList.get(id);
+        Task task = repository.getReferenceById(id);
         task.setDone(isDone);
-        taskList.remove(id);
-        taskList.put(id, task);
+        repository.save(task);
     }
 }

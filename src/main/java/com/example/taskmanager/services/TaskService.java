@@ -5,8 +5,7 @@ import com.example.taskmanager.entities.Task;
 import java.util.Collection;
 
 public interface TaskService {
-    void createTask(Task task);
-    void updateTask(Task task);
+    void saveTask(Task task);
     Task getTask(Integer id);
     Collection<Task> getAllTasks();
     Collection<Task> getAllTasks(boolean isDone);

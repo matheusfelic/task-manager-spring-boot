@@ -22,11 +22,16 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.0'
+    implementation 'org.liquibase:liquibase-core:4.23.0'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.2'
+    implementation 'org.postgresql:postgresql:42.6.0'
+    implementation 'org.springframework.data:spring-data-jpa:3.1.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.2'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:3.0.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
 }
 
 tasks.named('test') {

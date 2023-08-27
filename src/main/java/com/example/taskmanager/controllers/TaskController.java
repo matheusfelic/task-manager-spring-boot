@@ -32,13 +32,13 @@ public class TaskController {
 
     @PostMapping(value = "/tasks/create")
     public ResponseEntity<String> createTask(@RequestBody Task task) {
-        taskService.createTask(task);
+        taskService.saveTask(task);
         return new ResponseEntity<>("Your task was added successfully!", HttpStatus.OK);
     }
 
     @PutMapping(value = "/tasks/update")
     public ResponseEntity<String> updateTask(@RequestBody Task task) {
-        taskService.updateTask(task);
+        taskService.saveTask(task);
         return new ResponseEntity<>("Your task was updated successfully!", HttpStatus.OK);
     }
 
